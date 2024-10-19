@@ -1,37 +1,24 @@
-package tn.esprit.gestionzoo.main;
+package tn.esprit.gestionzoo.main; 
 
-import tn.esprit.gestionzoo.entities.Animal;
-import tn.esprit.gestionzoo.entities.Zoo;
+import tn.esprit.gestionzoo.entities.Dolphin;
+import tn.esprit.gestionzoo.entities.Penguin; 
+import tn.esprit.gestionzoo.entities.Terrestrial; 
+
 
 public class ZooManagement {
     public static void main(String[] args) {
-        // Création d'un zoo
-        Zoo myZoo = new Zoo("My Zoo", "My City", 25);
-        
-        // Création d'animaux
-        Animal lion = new Animal("Feline", "Lion", 5, true);
-        Animal elephant = new Animal("Elephantidae", "Elephant", 10, true);
-        Animal tiger = new Animal("Feline", "Tiger", 3, true);
-        // Ajout d'animaux dans le zoo
-        myZoo.addAnimal(lion);
-        myZoo.addAnimal(elephant);
-        myZoo.addAnimal(tiger);
+        // créer des animaux aquatic + terrestrial 
+        Dolphin dolphin = new Dolphin("Cetacea", "Dolphin", 8, true, "Ocean", 30.5f);
+        Penguin penguin = new Penguin("Spheniscidae", "Penguin", 4, true, "Antarctica", 20.0f);
+        Terrestrial lion = new Terrestrial("Feline", "Lion", 5, true, 4);
 
-        // Affichage des animaux dans le zoo
-        myZoo.displayAnimals();
+        // Afficher details
+        System.out.println(dolphin);
+        System.out.println(penguin);
+        System.out.println(lion);
 
-        // Suppression d'un animal
-        myZoo.removeAnimal(lion);
-
-        // Affichage des animaux après suppression
-        myZoo.displayAnimals();
-
-        // Comparaison de deux zoos
-        Zoo anotherZoo = new Zoo("Safari Park", "Nairobi", 15);
-        Animal giraffe = new Animal("Giraffidae", "Giraffe", 6, false);
-        anotherZoo.addAnimal(giraffe);
-
-        Zoo biggerZoo = Zoo.comparerZoo(myZoo, anotherZoo);
-        System.out.println("\nLe zoo avec le plus d'animaux est : " + biggerZoo.getName());
+        // Tester la méthode swim 
+        dolphin.swim();
+        penguin.swim();
     }
 }
