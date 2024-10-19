@@ -1,30 +1,33 @@
-import java.util.Scanner;
-
 public class ZooManagement {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Entrez le nom du zoo : ");
-        String zooName = scanner.nextLine();
-        System.out.print("Entrez le nombre de cages : ");
-        int nbrCages = scanner.nextInt();
-        scanner.nextLine(); 
-        System.out.print("Entrez la ville du zoo : ");
-        String zooCity = scanner.nextLine();
-        Zoo myZoo = new Zoo(zooName, zooCity, nbrCages);
-        System.out.print("Entrez le nom de l'animal : ");
-        String animalName = scanner.nextLine();
-        System.out.print("Entrez la famille de l'animal : ");
-        String animalFamily = scanner.nextLine();
-        System.out.print("Entrez l'âge de l'animal : ");
-        int animalAge = scanner.nextInt();
-        System.out.print("L'animal est-il un mammifère (true/false) ? ");
-        boolean isMammal = scanner.nextBoolean();
-        Animal lion = new Animal(animalFamily, animalName, animalAge, isMammal);
-        System.out.println("\nInformations du Zoo :");
-        myZoo.displayZoo();
-        System.out.println(myZoo);
+        // Création d'un zoo
+        Zoo myZoo = new Zoo("My Zoo", "My City", 25);
+        
+        // Création d'animaux
+        Animal lion = new Animal("Feline", "Lion", 5, true);
+        Animal elephant = new Animal("Elephantidae", "Elephant", 10, true);
+        Animal tiger = new Animal("Feline", "Tiger", 3, true);
 
-        System.out.println("\nInformations de l'Animal :");
-        System.out.println(lion);
+        // Ajout d'animaux dans le zoo
+        myZoo.addAnimal(lion);
+        myZoo.addAnimal(elephant);
+        myZoo.addAnimal(tiger);
+
+        // Affichage des animaux dans le zoo
+        myZoo.displayAnimals();
+
+        // Suppression d'un animal
+        myZoo.removeAnimal(lion);
+
+        // Affichage des animaux après suppression
+        myZoo.displayAnimals();
+
+        // Comparaison de deux zoos
+        Zoo anotherZoo = new Zoo("Safari Park", "Nairobi", 15);
+        Animal giraffe = new Animal("Giraffidae", "Giraffe", 6, false);
+        anotherZoo.addAnimal(giraffe);
+
+        Zoo biggerZoo = Zoo.comparerZoo(myZoo, anotherZoo);
+        System.out.println("\nLe zoo avec le plus d'animaux est : " + biggerZoo.getName());
     }
 }
