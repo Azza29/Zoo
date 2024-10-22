@@ -2,22 +2,69 @@ package tn.esprit.gestionzoo.entities;
 
 public class Zoo {
     private Animal[] animals;
+    private Animal[] aquaticAnimals;
     private String name;
     private String city;
     public final int NBR_CAGES;  
     private int animalCount;     
+    private int aquaticAnimalCount;
 
     public Zoo(String name, String city, int nbrCages) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Le nom du zoo ne peut pas être vide");
+        if (name == null) {
+                System.out.println("Le nom du zoo ne peut pas être vide");
         }
         this.name = name;
         this.city = city;
         this.NBR_CAGES = nbrCages;
-        this.animals = new Animal[NBR_CAGES];  // Utiliser le nombre de cages ici
-        this.animalCount = 0;           
+        this.animals = new Animal[NBR_CAGES]; 
+        this.aquaticAnimals = new Aquatic[10];  
+        this.animalCount = 0;
+        this.aquaticAnimalCount = 0; 
     }
 
+    public void addAquaticAnimal(Aquatic aquatic) {
+    if (aquaticAnimalCount >= 10) {
+        System.out.println("Le zoo est plein des animaux aquatiques, avec un nombre total de " + this.aquaticAnimalCount);
+    } else {
+        aquaticAnimals[aquaticAnimalCount] = aquatic;
+        aquaticAnimalCount++;
+        System.out.println("Animal aquatiques ajouté avec succès");
+    }
+
+    }
+    public void displayAquaticAnimals() {
+        System.out.println("Animaux aquatiques du zoo " + name + ":");
+        for (int i = 0; i < aquaticAnimalCount; i++) {
+            ((Aquatic) aquaticAnimals[i]).swim();
+        }
+    }
+    public float maxPenguinSwimmingDepth() {
+        float maxDepth = 0;
+        for (int i = 0; i < aquaticAnimalCount; i++) {
+            if (aquaticAnimals[i].getType() != null) {
+                Penguin penguin = (Penguin) aquaticAnimals[i];
+                if (penguin.getSwimmingDepth() > maxDepth) {
+                    maxDepth = penguin.getSwimmingDepth();
+                }
+            }
+        }
+        return maxDepth;
+    }
+    public void displayNumberOfAquaticsByType() {
+        int dolphinCount = 0;
+        int penguinCount = 0;
+    
+        for (int i = 0; i < aquaticAnimalCount; i++) {
+            if (aquaticAnimals[i].getType() == "Dolphin") {
+                dolphinCount++;
+            } else if (aquaticAnimals[i].getType() == "Penguin" ) {
+                penguinCount++;
+            }
+        }
+    
+           }
+    
+    
     public boolean addAnimal(Animal animal) {
         if (isZooFull()) {
             System.out.println("Le zoo est plein. Impossible d'ajouter l'animal.");
