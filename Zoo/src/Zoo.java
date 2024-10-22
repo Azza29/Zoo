@@ -94,4 +94,7 @@ public class Zoo {
         return "Zoo name: " + this.name + ", City: " + this.city + ", Number of cages: " + this.NBR_CAGES;
     }
 
-   }
+    public String getName() {
+        return this.name;
+    }
+}
